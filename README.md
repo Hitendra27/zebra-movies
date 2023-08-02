@@ -1,5 +1,8 @@
 # zebra-movies-backend
 
+![RT_300EssentialMovies_700X250](https://github.com/Hitendra27/zebra-movies-backend/assets/73651340/c1c76862-af84-44ae-88d7-8dbd7efc24c1)
+
+
 ## Backend Setup for zebra-movies-backend
 mkdir zebra-movies-backend
 
