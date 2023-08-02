@@ -6,7 +6,7 @@ export const getmovie = async (
   res: Response
 ) => {
   const movieName = req.query.movieName;
-  const movie = movieService.getmovie(movieName);
+  const movie = movieService.getMovie(movieName);
   res.json(movie).status(200);
 };
 

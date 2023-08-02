@@ -1,3 +1,3 @@
-export const getMovie = () => {
-  return { undefined };
+export const getMovie = (name = "Zebra") => {
+  return {  };
 };

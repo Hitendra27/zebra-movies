@@ -2,9 +2,10 @@
   "name": "zebra-movies",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.ts",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "start": "nodemon src/server.ts"
   },
   "keywords": [],
   "author": "",
