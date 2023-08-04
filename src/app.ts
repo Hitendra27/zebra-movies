@@ -1,4 +1,4 @@
-import express, { response } from "express";
+import express from "express";
 import { router } from "./routes/routes";
 import cors from 'cors'
 
@@ -25,24 +25,13 @@ app.use(express.json());
 
 app.get("/", (req, res) => res.send("Welcome to the Movie API!"));
 
-app.get("/test", (req, res) => {
-  fetch(API_URL)
-    .then((res) => res.json())
-<<<<<<< HEAD
-    .then((data) => {
-      console.log(data);
-    });
-});
-=======
-    .then ((data) => {
-        console.log("It has been called");
-
-        res.send(data)
-    })
-
+app.get('/test', (req, res) => {
+    fetch(API_URL)
+        .then((res) => res.json())
+        .then((data) => {
+            console.log("It has been called");
+            res.send(data)
+        })
 })
-
-
->>>>>>> 08c8830ee25047251516f8cce836bfbf85312f2a
 
 app.use("/", router);
