@@ -14,3 +14,4 @@ export const search = async ({ page = '1', query }: { page: string, query: strin
     return null;
   }
 }
+

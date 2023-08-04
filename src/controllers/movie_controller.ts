@@ -26,3 +26,4 @@ export const getSearch = async (
   res.send(searchMovieResults);
 }
 
+

@@ -27,11 +27,12 @@ app.get("/", (req, res) => res.send("Welcome to the Movie API!"));
 
 app.get('/test', (req, res) => {
     fetch(API_URL)
-        .then((res) => res.json())
-        .then((data) => {
-            console.log("It has been called");
-            res.send(data)
-        })
+    .then((res) => res.json())
+    .then ((data) => {
+        console.log('It has been called');
+        res.send(data)
+    })
+
 })
 
 app.use("/", router);
