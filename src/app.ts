@@ -26,13 +26,32 @@ app.use(express.json());
 app.get("/", (req, res) => res.send("Welcome to the Movie API!"));
 
 app.get('/test', (req, res) => {
-    fetch(API_URL)
+  fetch(API_URL)
     .then((res) => res.json())
-    .then ((data) => {
-        console.log('It has been called');
-        res.send(data)
+    .then((data) => {
+      console.log('It has been called');
+      res.send(data);
     })
+    .catch((err) => console.error(err));
+});
 
-})
+const options = {
+  method: 'GET',
+  headers: {
+    accept: 'application/json',
+    Authorization:
+      'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1NzJhNDJlYjU3YTVjM2Y5Y2U4Y2U1YmY4M2U1NjIwMSIsInN1YiI6IjY0Y2JiZWU1Nzg1NzBlMDExZTUzZjZhOCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.bSkIGEeiWScqFM0nIyIPqBzyM1A1EgtGpz0xJ0akZgc',
+  },
+};
+
+app.get('/genres', (req, res) => {
+  fetch('https://api.themoviedb.org/3/genre/movie/list?language=en', options)
+    .then((res) => res.json())
+    .then((data) => {
+      console.log('all genres api has been called');
+      res.send(data);
+    })
+    .catch((err) => console.error(err));
+});
 
 app.use("/", router);
