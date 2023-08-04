@@ -4,7 +4,8 @@ import cors from 'cors'
 
 export const app = express();
 
-const API_URL = 'https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=3fd2be6f0c70a2a598f084ddfb75487c&page=1'
+const API_URL =
+  "https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=3fd2be6f0c70a2a598f084ddfb75487c&page=1";
 
 app.options('*', cors({
     origin: true,
@@ -31,9 +32,6 @@ app.get('/test', (req, res) => {
             console.log("It has been called");
             res.send(data)
         })
-
 })
-
-
 
 app.use("/", router);
