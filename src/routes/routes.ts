@@ -6,3 +6,5 @@ export const router = express.Router();
 router.get("/movie", movieController.getmovie);
 
 router.get("/movielover", movieController.getmovieLover);
+
+router.get("/search", movieController.getSearch);

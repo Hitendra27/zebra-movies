@@ -1,4 +1,4 @@
-import express, { response } from "express";
+import express from "express";
 import { router } from "./routes/routes";
 import cors from 'cors'
 
@@ -26,12 +26,11 @@ app.get("/", (req, res) => res.send("Welcome to the Movie API!"));
 
 app.get('/test', (req, res) => {
     fetch(API_URL)
-    .then((res) => res.json())
-    .then ((data) => {
-        console.log("It has been called");
-
-        res.send(data)
-    })
+        .then((res) => res.json())
+        .then((data) => {
+            console.log("It has been called");
+            res.send(data)
+        })
 
 })
 

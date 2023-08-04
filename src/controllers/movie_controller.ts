@@ -13,3 +13,20 @@ export const getmovie = async (
 export const getmovieLover = (req: Request, res: Response) => {
   res.send("I looooooove movie!");
 };
+
+export const getSearch = async (
+  req: Request<object, object, object, { query: string, page: string }>,
+  res: Response
+) => {
+  const {
+    page,
+    query
+  } = req.query;
+
+  const searchMovieResults = await movieService.search({ page, query });
+  if (!searchMovieResults) return res.sendStatus(400);
+
+  res.status(200)
+  res.send(searchMovieResults);
+}
+
