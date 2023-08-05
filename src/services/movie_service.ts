@@ -15,11 +15,3 @@ export const search = async ({ page = '1', query }: { page: string, query: strin
   }
 }
 
-export async function getMovieGenreList() {
-  // in the real world we might call a db here, but we have a function
-  // that generates random misdemeanours so that'll do instead
-  // return await generateMisdemeanours(amount);
-
-  return 'hello';
-}
-

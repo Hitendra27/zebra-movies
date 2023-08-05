@@ -25,11 +25,3 @@ export const getSearch = async (
   res.status(200)
   res.send(searchMovieResults);
 }
-
-export const getGenres = async (
-  req: Request<object, object, object>,
-  res: Response
-) => {
-  const genreList = movieService.getMovieGenreList();
-  res.json(genreList).status(200);
-};
