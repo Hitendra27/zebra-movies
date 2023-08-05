@@ -15,18 +15,11 @@ export const search = async ({ page = '1', query }: { page: string, query: strin
   }
 }
 
-export const getMovieGenreList = async () => {
-  try {
-    const url = `https://api.themoviedb.org/3/genre/movie/list&api_key=3fd2be6f0c70a2a598f084ddfb75487c`;
-    const response = await fetch(url);
-    const genreListResults = await response.json();
+export async function getMovieGenreList() {
+  // in the real world we might call a db here, but we have a function
+  // that generates random misdemeanours so that'll do instead
+  // return await generateMisdemeanours(amount);
 
-    console.log('genreListResults', genreListResults);
-    return genreListResults;
-  } catch (error) {
-    console.error(error);
-    return null;
-  }
-};
-
+  return 'hello';
+}
 
