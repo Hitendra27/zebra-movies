@@ -44,6 +44,7 @@ const options = {
   },
 };
 
+
 app.get('/genres', (req, res) => {
   fetch('https://api.themoviedb.org/3/genre/movie/list?language=en', options)
     .then((res) => res.json())
@@ -54,4 +55,16 @@ app.get('/genres', (req, res) => {
     .catch((err) => console.error(err));
 });
 
+app.get('/filter', (req, res) => {
+  const genre = req.query.with_genres;
+  const GENRE_API_URL = `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-GB&page=1&sort_by=vote_average.desc&with_genres=${genre}`;
+
+  fetch(GENRE_API_URL, options)
+    .then((res) => res.json())
+    .then((data) => {
+      console.log('movie genre api has been called');
+      res.send(data);
+    })
+    .catch((err) => console.error(err));
+});
 app.use("/", router);
