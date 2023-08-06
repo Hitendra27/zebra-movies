@@ -1,12 +1,24 @@
-export const getPersonDetails = async (personId: string | undefined) => {
+interface Person {
+  name: string;
+  biography: string;
+  place_of_birth: string;
+  // Add more properties here if needed
+}
+
+export const getPersonById = async (
+  personId: string
+): Promise<Person | null> => {
   try {
     const url = `${process.env.BASE_URL}person/${personId}?api_key=${process.env.API_KEY}`;
     console.log(url);
     const response = await fetch(url);
-    const personDetails = await response.json();
+    if (!response.ok) {
+      throw new Error("Request failed with status ${response.status");
+    }
+    const personDetails: Person = await response.json();
     return personDetails;
   } catch (error) {
-    console.error(error);
+    console.error(`Error: ${(error as Error).message}`);
     return null;
   }
 };

@@ -10,4 +10,4 @@ router.get("/search", movieController.getSearch);
 
 router.get("/genres", movieController.getGenres);
 
-router.get("/person", personController.getPerson);
+router.get("/person/:id", personController.getPersonById);

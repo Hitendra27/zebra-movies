@@ -2,8 +2,11 @@ import "dotenv/config";
 import express from "express";
 import { router } from "./routes/routes";
 import cors from "cors";
+import urlLogger from "./urlLogger";
 
 export const app = express();
+
+app.use(urlLogger);
 
 const API_URL =
   "https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=3fd2be6f0c70a2a598f084ddfb75487c&page=1";
