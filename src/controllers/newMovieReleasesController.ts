@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import * as movieService from "../services/movie_service";
 
-export const getmovie = async (
+export const getNewMovieReleases = async (
   req: Request<object, object, object, { movieName: string | undefined }>,
   res: Response
 ) => {
@@ -9,14 +9,3 @@ export const getmovie = async (
   const movie = movieService.getMovie(movieName);
   res.json(movie).status(200);
 };
-
-export const getmovieLover = (req: Request, res: Response) => {
-  res.send("I looooooove movie!");
-};
-
-// const mockMovie = {
-//   title: "The Shawshank Redemption",
-//   director: "Frank Darabont",
-//   year: 1994,
-//   rating: 9.3,
-// };
