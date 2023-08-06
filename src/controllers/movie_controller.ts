@@ -25,3 +25,14 @@ export const getSearch = async (
   res.status(200)
   res.send(searchMovieResults);
 }
+
+export const getGenres = async (
+  req: Request<object, object, object>,
+  res: Response
+) => {
+  const genreResults = await movieService.getGenres();
+  if (!genreResults) return res.sendStatus(400);
+
+  res.status(200);
+  res.send(genreResults);
+};
