@@ -9,3 +9,6 @@ export const getPersonDetails = async (personId: string | undefined) => {
     return null;
   }
 };
+
+const BASE_URL = process.env.BASE_URL;
+const API_KEY = process.env.API_KEY;
