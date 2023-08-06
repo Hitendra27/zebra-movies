@@ -13,12 +13,16 @@ export const getPersonById = async (
     console.log(url);
     const response = await fetch(url);
     if (!response.ok) {
-      throw new Error("Request failed with status ${response.status");
+      throw new Error(`Request failed with status ${response.status}`);
     }
     const personDetails: Person = await response.json();
     return personDetails;
   } catch (error) {
-    console.error(`Error: ${(error as Error).message}`);
+    if (error instanceof Error) {
+      console.error(`Error: ${error.message}`);
+    } else {
+      console.error("Unknown error occurred.");
+    }
     return null;
   }
 };
