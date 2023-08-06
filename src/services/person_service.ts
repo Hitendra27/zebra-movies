@@ -1,21 +1,29 @@
-interface Person {
-  name: string;
-  biography: string;
-  place_of_birth: string;
-  // Add more properties here if needed
-}
+import { PersonDetails } from "../types/interfaces";
 
 export const getPersonById = async (
   personId: string
-): Promise<Person | null> => {
+): Promise<PersonDetails | null> => {
   try {
     const url = `${process.env.BASE_URL}person/${personId}?api_key=${process.env.API_KEY}`;
-    console.log(url);
+
     const response = await fetch(url);
+
     if (!response.ok) {
       throw new Error(`Request failed with status ${response.status}`);
     }
-    const personDetails: Person = await response.json();
+
+    const personData = await response.json();
+
+    const personDetails: PersonDetails = {
+      biography: personData.biography,
+      birthday: personData.birthday,
+      id: personData.id,
+      known_for_department: personData.known_for_department,
+      name: personData.name,
+      place_of_birth: personData.place_of_birth,
+      profile_path: personData.profile_path,
+    };
+
     return personDetails;
   } catch (error) {
     if (error instanceof Error) {

@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import * as personService from "../services/person_service";
+import { PersonDetails } from "../types/interfaces";
 
 export const getPersonById = async (
   req: Request<{ id: string }>,
@@ -9,7 +10,9 @@ export const getPersonById = async (
   if (!personId || typeof personId !== "string") {
     return res.sendStatus(400);
   }
-  const personDetails = await personService.getPersonById(personId);
+  const personDetails: PersonDetails | null = await personService.getPersonById(
+    personId
+  );
   if (!personDetails) return res.sendStatus(400);
   res.status(200).json(personDetails);
 };
