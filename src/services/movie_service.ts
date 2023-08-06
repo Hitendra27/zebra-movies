@@ -1,3 +1,13 @@
+
+interface moviesProp {
+  id: number;
+  title: string;
+  overview: string;
+  poster_path: string;
+}
+
+const API_URL = 'https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=3fd2be6f0c70a2a598f084ddfb75487c&page=1';
+
 export const options = {
   method: 'GET',
   headers: {
@@ -7,8 +17,24 @@ export const options = {
   },
 };
 
-export const getMovie = (name = 'Zebra') => {
-  return {};
+export const getMovies = async (): Promise<moviesProp[]> => {
+  try {
+    const response = await fetch(API_URL);
+    if (!response.ok) {
+      throw new Error("Bad response");
+    }
+    const data = await response.json();
+    const filteredMovies: moviesProp[] = data.results.map((movie: any) => ({
+      id: movie.id,
+      title: movie.title,
+      overview: movie.overview,
+      poster_path: movie.poster_path
+    }));
+    return filteredMovies;
+  } catch (error) {
+    console.error("Error fetching movies:", error);
+    throw new Error("An error occurred while fetching movies");
+  }
 };
 
 export const search = async ({
