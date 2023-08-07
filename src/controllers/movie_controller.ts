@@ -11,25 +11,37 @@ export const getMovie = async (
 };
 
 export const getSearch = async (
-  req: Request<object, object, object, { query: string, page: string }>,
+  req: Request<object, object, object, { query: string; page: string }>,
   res: Response
 ) => {
-  const {
-    page,
-    query
-  } = req.query;
+  const { page, query } = req.query;
 
   const searchMovieResults = await movieService.search({ page, query });
   if (!searchMovieResults) return res.sendStatus(400);
 
-  res.status(200)
+  res.status(200);
   res.send(searchMovieResults);
-}
+};
 
 export const getGenres = async (
   req: Request<object, object, object>,
   res: Response
 ) => {
-  const genreList = movieService.getMovieGenreList();
-  res.json(genreList).status(200);
+  const genreResults = await movieService.getGenres();
+  if (!genreResults) return res.sendStatus(400);
+
+  res.status(200);
+  res.send(genreResults);
+};
+
+// latest movies
+export const getLatest = async (
+  req: Request<object, object, object>,
+  res: Response
+) => {
+  const latestResults = await movieService.getLatest();
+  if (!latestResults) return res.sendStatus(400);
+
+  res.status(200);
+  res.send(latestResults);
 };

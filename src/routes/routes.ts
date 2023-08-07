@@ -4,10 +4,13 @@ import * as personController from "../controllers/person_controller";
 
 export const router = express.Router();
 
-router.get("/movie", movieController.getMovie);
 
-router.get("/search", movieController.getSearch);
+router.get('/movie', movieController.getMovie);
 
-router.get("/genres", movieController.getGenres);
+router.get('/search', movieController.getSearch);
+
+router.get('/genres', movieController.getGenres);
+
+router.get('/latest', movieController.getLatest);
 
 router.get("/person/:id", personController.getPersonById);
