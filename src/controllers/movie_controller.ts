@@ -1,13 +1,12 @@
 import { Request, Response } from "express";
 import * as movieService from "../services/movie_service";
 
-export const getMovie = async (
-  req: Request<object, object, object, { movieName: string | undefined }>,
+export const getMovies = async (
+  req: Request<object, object, object>,
   res: Response
 ) => {
-  const movieName = req.query.movieName;
-  const movie = movieService.getMovie(movieName);
-  res.json(movie).status(200);
+  const movies = await movieService.getMovies();
+  res.json(movies).status(200);
 };
 
 export const getSearch = async (
