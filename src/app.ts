@@ -1,16 +1,23 @@
+import "dotenv/config";
 import express from "express";
 import { router } from "./routes/routes";
-import cors from 'cors'
+import cors from "cors";
+import urlLogger from "./urlLogger";
 
 export const app = express();
+
+app.use(urlLogger);
 
 const API_URL =
   "https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=3fd2be6f0c70a2a598f084ddfb75487c&page=1";
 
-app.options('*', cors({
+app.options(
+  "*",
+  cors({
     origin: true,
-    credentials: true
-}))
+    credentials: true,
+  })
+);
 
 const apiOptions = {
   method: 'GET',
@@ -34,11 +41,11 @@ app.use(express.json());
 
 app.get('/', (req, res) => res.send('Welcome to the Movie API!'));
 
-app.get('/test', (req, res) => {
+app.get("/test", (req, res) => {
   fetch(API_URL)
     .then((res) => res.json())
     .then((data) => {
-      console.log('It has been called');
+      console.log("It has been called");
       res.send(data);
     })
     .catch((err) => console.error(err));
