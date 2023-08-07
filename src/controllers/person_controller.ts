@@ -8,6 +8,7 @@ export const getPersonById = async (
 ) => {
   const personId = req.params.id;
   if (!personId || typeof personId !== "string") {
+    //BW - Consider adding additional validation to make sure it's a number
     return res.sendStatus(400);
   }
   const personDetails: PersonDetails | null = await personService.getPersonById(
