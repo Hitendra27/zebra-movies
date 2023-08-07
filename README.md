@@ -2,7 +2,7 @@
 
 # Movie API Project
 
-![![RT_300EssentialMovies_700X250](https://github.com/Hitendra27/zebra-movies-backend/assets/73651340/c1c76862-af84-44ae-88d7-8dbd7efc24c1)](https://github.com/Hitendra27/zebra-movies-backend)
+![RT_300EssentialMovies_700X250](https://github.com/Hitendra27/zebra-movies-backend/assets/73651340/c1c76862-af84-44ae-88d7-8dbd7efc24c1)
 
 ## Table of Contents
 
@@ -70,11 +70,10 @@ This project is licensed under the MIT License.
 If you have any questions or suggestions, please feel free to reach out to me:
 
 Email: your-email@example.com
+
 GitHub: Your GitHub Profile
+
 LinkedIn: Your LinkedIn Profile
-
-
-![RT_300EssentialMovies_700X250](https://github.com/Hitendra27/zebra-movies-backend/assets/73651340/c1c76862-af84-44ae-88d7-8dbd7efc24c1)
 
 
 ## Backend Setup for zebra-movies-backend
