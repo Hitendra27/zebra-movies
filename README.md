@@ -53,6 +53,25 @@ npm install
 cd ../backend
 npm install
 
+## Usage
+Explain how to use your application, how to make API requests, etc.
+
+## API Documentation
+Provide details about the API endpoints, request parameters, and response data.
+
+## Contributing
+Contributions are welcome! Please fork the repository and create a pull request.
+
+## License
+This project is licensed under the MIT License.
+
+## Contact
+If you have any questions or suggestions, please feel free to reach out to me:
+
+Email: your-email@example.com
+GitHub: Your GitHub Profile
+LinkedIn: Your LinkedIn Profile
+
 
 
 
