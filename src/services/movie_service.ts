@@ -1,9 +1,10 @@
-interface moviesProp {
+export interface MovieResponse {
   id: number;
   title: string;
   overview: string;
   poster_path: string;
 }
+
 const API_URL = 'https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=3fd2be6f0c70a2a598f084ddfb75487c&page=1';
 
 export const options = {
@@ -15,14 +16,14 @@ export const options = {
   },
 };
 
-export const getMovies = async (): Promise<moviesProp[]> => {
+export const getMovies = async (): Promise<MovieResponse[]> => {
   try {
     const response = await fetch(API_URL);
     if (!response.ok) {
       throw new Error("Bad response");
     }
     const data = await response.json();
-    const filteredMovies: moviesProp[] = data.results.map((movie: any) => ({
+    const filteredMovies: MovieResponse[] = data.results.map((movie: any) => ({
       id: movie.id,
       title: movie.title,
       overview: movie.overview,
@@ -35,23 +36,49 @@ export const getMovies = async (): Promise<moviesProp[]> => {
   }
 };
 
-export const search = async ({
-  page = "1",
+export const searchByString = async ({
   query,
 }: {
-  page: string;
   query: string;
 }) => {
   try {
-    const url = `https://api.themoviedb.org/3/search/movie?query=${query}&page=${page}&include_adult=false&language=en-US&api_key=3fd2be6f0c70a2a598f084ddfb75487c`;
+    const url = `https://api.themoviedb.org/3/search/movie?query=${query}&include_adult=false&language=en-US&api_key=3fd2be6f0c70a2a598f084ddfb75487c`;
     const response = await fetch(url);
-    const searchMovieResults = await response.json();
+    const data = await response.json();
+    const searchMovieResults: MovieResponse[] = data.results.map((movie: any) => ({
+      id: movie.id,
+      title: movie.title,
+      overview: movie.overview,
+      poster_path: movie.poster_path
+    }));
     return searchMovieResults;
   } catch (error) {
-    console.error(error);
+    console.error("Error fetching search by string:", error);
     return null;
   }
 };
+
+export const filterByGenres = async ({
+  genres
+}: { genres: string[] }) => {
+  const genreString = genres.join("|") // search performed with OR operator
+  const url = `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-GB&with_genres=${genreString}`;
+
+  try {
+    const response = await fetch(url)
+    const data = await response.json();
+    const genreFilterResults: MovieResponse[] = data.results.map((movie: any) => ({
+      id: movie.id,
+      title: movie.title,
+      overview: movie.overview,
+      poster_path: movie.poster_path
+    }));
+    return genreFilterResults
+  } catch (error) {
+    console.error("Error fetching filter by genre:", error);
+    return null;
+  }
+}
 
 export const getGenres = async () => {
   try {
