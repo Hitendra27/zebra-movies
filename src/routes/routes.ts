@@ -1,7 +1,7 @@
 import express from "express";
 import * as movieController from "../controllers/movie_controller";
 import * as personController from "../controllers/person_controller";
-import * as movieDetailsController from "../controllers/movieDetails_controller";
+import * as movieDetailsController from "../controllers/moviedetails_controller";
 
 export const router = express.Router();
 
