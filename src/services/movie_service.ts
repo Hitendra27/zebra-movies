@@ -5,7 +5,8 @@ export interface MovieResponse {
   poster_path: string;
 }
 
-const API_URL = 'https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=3fd2be6f0c70a2a598f084ddfb75487c&page=1';
+const API_URL =
+  "https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=3fd2be6f0c70a2a598f084ddfb75487c&page=1";
 
 export const options = {
   method: "GET",
@@ -27,7 +28,7 @@ export const getMovies = async (): Promise<MovieResponse[]> => {
       id: movie.id,
       title: movie.title,
       overview: movie.overview,
-      poster_path: movie.poster_path
+      poster_path: movie.poster_path,
     }));
     return filteredMovies;
   } catch (error) {
@@ -36,21 +37,19 @@ export const getMovies = async (): Promise<MovieResponse[]> => {
   }
 };
 
-export const searchByString = async ({
-  query,
-}: {
-  query: string;
-}) => {
+export const searchByString = async ({ query }: { query: string }) => {
   try {
     const url = `https://api.themoviedb.org/3/search/movie?query=${query}&include_adult=false&language=en-US&api_key=3fd2be6f0c70a2a598f084ddfb75487c`;
     const response = await fetch(url);
     const data = await response.json();
-    const searchMovieResults: MovieResponse[] = data.results.map((movie: any) => ({
-      id: movie.id,
-      title: movie.title,
-      overview: movie.overview,
-      poster_path: movie.poster_path
-    }));
+    const searchMovieResults: MovieResponse[] = data.results.map(
+      (movie: any) => ({
+        id: movie.id,
+        title: movie.title,
+        overview: movie.overview,
+        poster_path: movie.poster_path,
+      })
+    );
     return searchMovieResults;
   } catch (error) {
     console.error("Error fetching search by string:", error);
@@ -58,27 +57,27 @@ export const searchByString = async ({
   }
 };
 
-export const filterByGenres = async ({
-  genres
-}: { genres: string[] }) => {
-  const genreString = genres.join("|") // search performed with OR operator
+export const filterByGenres = async ({ genres }: { genres: string[] }) => {
+  const genreString = genres.join("|"); // search performed with OR operator
   const url = `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-GB&with_genres=${genreString}`;
 
   try {
-    const response = await fetch(url)
+    const response = await fetch(url);
     const data = await response.json();
-    const genreFilterResults: MovieResponse[] = data.results.map((movie: any) => ({
-      id: movie.id,
-      title: movie.title,
-      overview: movie.overview,
-      poster_path: movie.poster_path
-    }));
-    return genreFilterResults
+    const genreFilterResults: MovieResponse[] = data.results.map(
+      (movie: any) => ({
+        id: movie.id,
+        title: movie.title,
+        overview: movie.overview,
+        poster_path: movie.poster_path,
+      })
+    );
+    return genreFilterResults;
   } catch (error) {
     console.error("Error fetching filter by genre:", error);
     return null;
   }
-}
+};
 
 export const getGenres = async () => {
   try {
@@ -98,6 +97,18 @@ export const getLatest = async () => {
     const response = await fetch(url, options);
     const latestResults = await response.json();
     return latestResults;
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+};
+
+export const getUpcomingMovies = async () => {
+  try {
+    const url = `https://api.themoviedb.org/3/movie/upcoming?api_key=3fd2be6f0c70a2a598f084ddfb75487c&language=en-US&page=1&region=US`;
+    const response = await fetch(url, options);
+    const upcomingMoviesResults = await response.json();
+    return upcomingMoviesResults;
   } catch (error) {
     console.log(error);
     return null;

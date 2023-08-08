@@ -18,3 +18,5 @@ router.get("/latest", movieController.getLatest);
 router.get("/person/:id", personController.getPersonById);
 
 router.get("/movie/:id", movieDetailsController.getMovieById);
+
+router.get("/upcomingMovies", movieController.getUpcomingMovies);
