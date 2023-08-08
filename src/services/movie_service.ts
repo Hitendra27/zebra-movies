@@ -6,7 +6,7 @@ export interface MovieResponse {
 }
 
 const API_URL =
-  "https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=3fd2be6f0c70a2a598f084ddfb75487c&page=1";
+  `${process.env.BASE_URL}discover/movie?sort_by=popularity.desc&api_key=${process.env.API_KEY}&page=1`;
 
 export const options = {
   method: "GET",
@@ -39,7 +39,7 @@ export const getMovies = async (): Promise<MovieResponse[]> => {
 
 export const searchByString = async ({ query }: { query: string }) => {
   try {
-    const url = `https://api.themoviedb.org/3/search/movie?query=${query}&include_adult=false&language=en-US&api_key=3fd2be6f0c70a2a598f084ddfb75487c`;
+    const url = `${process.env.BASE_URL}search/movie?query=${query}&include_adult=false&language=en-US&api_key=${process.env.API_KEY}`;
     const response = await fetch(url);
     const data = await response.json();
     const searchMovieResults: MovieResponse[] = data.results.map(
@@ -59,7 +59,7 @@ export const searchByString = async ({ query }: { query: string }) => {
 
 export const filterByGenres = async ({ genres }: { genres: string[] }) => {
   const genreString = genres.join("|"); // search performed with OR operator
-  const url = `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-GB&with_genres=${genreString}`;
+  const url = `${process.env.BASE_URL}discover/movie?include_adult=false&include_video=false&language=en-GB&with_genres=${genreString}`;
 
   try {
     const response = await fetch(url);
@@ -81,7 +81,7 @@ export const filterByGenres = async ({ genres }: { genres: string[] }) => {
 
 export const getGenres = async () => {
   try {
-    const url = `https://api.themoviedb.org/3/genre/movie/list?language=en`;
+    const url = `${process.env.BASE_URL}genre/movie/list?language=en`;
     const response = await fetch(url, options);
     const genreResults = await response.json();
     return genreResults;
@@ -93,7 +93,7 @@ export const getGenres = async () => {
 
 export const getLatest = async () => {
   try {
-    const url = `https://api.themoviedb.org/3/discover/movie?api_key=3fd2be6f0c70a2a598f084ddfb75487c&page=1&include_video=false&primary_release_date.gte=2023-08-07&primary_release_date.lte=2022-03-01`;
+    const url = `${process.env.BASE_URL}discover/movie?api_key=${process.env.API_KEY}&page=1&include_video=false&primary_release_date.gte=2023-08-07&primary_release_date.lte=2022-03-01`;
     const response = await fetch(url, options);
     const latestResults = await response.json();
     return latestResults;
@@ -105,7 +105,7 @@ export const getLatest = async () => {
 
 export const getUpcomingMovies = async () => {
   try {
-    const url = `https://api.themoviedb.org/3/movie/upcoming?api_key=3fd2be6f0c70a2a598f084ddfb75487c&language=en-US&page=1&region=US`;
+    const url = `${process.env.BASE_URL}movie/upcoming?api_key=${process.env.API_KEY}&language=en-US&page=1&region=US`;
     const response = await fetch(url, options);
     const upcomingMoviesResults = await response.json();
     return upcomingMoviesResults;
@@ -114,3 +114,4 @@ export const getUpcomingMovies = async () => {
     return null;
   }
 };
+
