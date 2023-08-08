@@ -21,7 +21,7 @@ export const getPersonById = async (
       known_for_department: personData.known_for_department,
       name: personData.name,
       place_of_birth: personData.place_of_birth,
-      profile_path: personData.profile_path,
+      profile_path: `https://image.tmdb.org/t/p/w200${personData.profile_path}`,
     };
 
     return personDetails;
