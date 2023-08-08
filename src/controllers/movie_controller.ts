@@ -35,8 +35,9 @@ export const getSearch = async (
 
     if (genres === '' && query === '') {
         res.send(allResults);
+    } else if (genres === '' && query !== '') {
+        res.send(searchByStringResults);
     } else if (genres !== '' && query === '') {
-        console.log('genres', genres)
         res.send(filterByGenreResults);
     } else if (genres !== '' && query !== '') {
         const genreArray = genres?.split(',')
