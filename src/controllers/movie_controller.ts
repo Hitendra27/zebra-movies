@@ -1,5 +1,14 @@
 import { Request, Response } from "express";
 import * as movieService from "../services/movie_service";
+import { MovieResponse } from "../services/movie_service";
+
+export const getHealth = async (
+  req: Request<object, object, object>,
+  res: Response
+) => {
+  console.log('Health check:  Server is running!')
+  res.status(200).send('Server is running')
+}
 
 export const getMovies = async (
   req: Request<object, object, object>,
@@ -10,16 +19,25 @@ export const getMovies = async (
 };
 
 export const getSearch = async (
-  req: Request<object, object, object, { query: string; page: string }>,
+  req: Request<object, object, object, { query: string, genres: string[] }>,
   res: Response
 ) => {
-  const { page, query } = req.query;
+  const { query, genres } = req.query;
+  const filterByGenreResults = await movieService.filterByGenres({ genres })
+  const searchByStringResults = await movieService.searchByString({ query })
 
-  const searchMovieResults = await movieService.search({ page, query });
-  if (!searchMovieResults) return res.sendStatus(400);
+  if (filterByGenreResults === null) return res.sendStatus(400);
+  if (searchByStringResults === null) return res.sendStatus(400);
+
+  const combinedResults = searchByStringResults.reduce(
+    (acc: MovieResponse[], item: MovieResponse) => {
+      return acc.includes(item) ? acc : [...acc, item]
+    },
+    [...filterByGenreResults]
+  )
 
   res.status(200);
-  res.send(searchMovieResults);
+  res.send(combinedResults);
 };
 
 export const getGenres = async (

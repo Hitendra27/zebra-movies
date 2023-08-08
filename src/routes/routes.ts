@@ -4,6 +4,7 @@ import * as personController from "../controllers/person_controller";
 
 export const router = express.Router();
 
+router.get('/health', movieController.getHealth)
 
 router.get('/movies', movieController.getMovies);
 
