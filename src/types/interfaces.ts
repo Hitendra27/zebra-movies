@@ -5,7 +5,7 @@ export interface PersonDetails {
   known_for_department: string;
   name: string;
   place_of_birth: string;
-  profile_path: string;
+  profile_path: string | null;
 }
 
 export interface Genre {
@@ -19,7 +19,7 @@ export interface MovieDetails {
   homepage: string | null;
   id: number;
   overview: string;
-  poster_path: string;
+  poster_path: string | null;
   release_date: string;
   revenue: number;
   runtime: number | null;
@@ -30,12 +30,9 @@ export interface MovieDetails {
 }
 
 export interface CastMember {
-  adult: boolean;
-  gender: number;
   id: number;
   known_for_department: string;
   name: string;
-  original_name: string;
   popularity: number;
   profile_path: string | null;
   cast_id: number;
