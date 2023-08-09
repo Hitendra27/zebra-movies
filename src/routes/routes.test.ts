@@ -67,7 +67,7 @@ describe("Zebra Movie API Routes", () => {
     // Nothing to arrange here as we testing a single route only here
 
     // Act
-    const response = await request(app).get("/upcomingMovies");
+    const response = await request(app).get('/upcoming');
 
     // Assert
     expect(response.status).toBe(200);

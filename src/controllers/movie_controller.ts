@@ -1,13 +1,16 @@
 import { Request, Response } from "express";
-import * as movieService from "../services/movie_service";
-import { MovieResponse } from "../services/movie_service";
+import * as movieService from '../services/movie_service';
 
 export const getHealth = async (
     req: Request<object, object, object>,
     res: Response
 ) => {
-    console.log('Health check:  Server is running!')
-    res.status(200).send('Server is running')
+
+  const healthResults = await movieService.getHealth();
+  if (!healthResults) return res.sendStatus(400);
+  console.log('Health check:  Server is running!');
+  res.status(200);
+  res.send(healthResults);
 }
 
 export const getMovies = async (

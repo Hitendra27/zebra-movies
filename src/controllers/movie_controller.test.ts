@@ -95,27 +95,27 @@ describe("Movie Controller Tests", () => {
     });
   });
 
-  describe("GET /upcomingMovies", () => {
-    test("should get mocked upcoming movies successfully", async () => {
+  describe('GET /upcoming', () => {
+    test('should get mocked upcoming movies successfully', async () => {
       const mockUpcomingMovies = {
         dates: {
-          maximum: "2023-08-31",
-          minimum: "2023-08-08",
+          maximum: '2023-08-31',
+          minimum: '2023-08-08',
         },
         results: [
           {
             adult: false,
-            backdrop_path: "/vbt3n34eNLBJHIBtRnmKPbHD5G0.jpg",
+            backdrop_path: '/vbt3n34eNLBJHIBtRnmKPbHD5G0.jpg',
             genre_ids: [28, 18],
             id: 980489,
-            original_language: "en",
-            original_title: "Gran Turismo",
+            original_language: 'en',
+            original_title: 'Gran Turismo',
             overview:
-              "The ultimate wish fulfillment tale of a teenage Gran Turismo player whose gaming skills won him a series of Nissan competitions to become an actual professional racecar driver.",
+              'The ultimate wish fulfillment tale of a teenage Gran Turismo player whose gaming skills won him a series of Nissan competitions to become an actual professional racecar driver.',
             popularity: 144.742,
-            poster_path: "/bGiNbWaWQxuyIeuajujvsQRJw9y.jpg",
-            release_date: "2023-08-11",
-            title: "Gran Turismo",
+            poster_path: '/bGiNbWaWQxuyIeuajujvsQRJw9y.jpg',
+            release_date: '2023-08-11',
+            title: 'Gran Turismo',
             video: false,
             vote_average: 7.6,
             vote_count: 9,
@@ -126,7 +126,7 @@ describe("Movie Controller Tests", () => {
         mockUpcomingMovies
       );
 
-      const res = await request(app).get("/upcomingMovies");
+      const res = await request(app).get('/upcoming');
       expect(res.status).toEqual(200);
       expect(res.body).toEqual(mockUpcomingMovies);
     });
