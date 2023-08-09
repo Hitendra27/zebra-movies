@@ -35,14 +35,28 @@ export const getMovieById = async (
       homepage: movieData.homepage,
       id: movieData.id,
       overview: movieData.overview,
-      poster_path: `https://image.tmdb.org/t/p/w200${movieData.poster_path}`,
+      poster_path: movieData.poster_path
+        ? `https://image.tmdb.org/t/p/w200${movieData.poster_path}`
+        : "",
       release_date: movieData.release_date,
       revenue: movieData.revenue,
       runtime: movieData.runtime,
       status: movieData.status,
       tagline: movieData.tagline,
       title: movieData.title,
-      credits: creditsData.cast as CastMember[],
+      credits: creditsData.cast.map((cast: CastMember) => ({
+        id: cast.id,
+        known_for_department: cast.known_for_department,
+        name: cast.name,
+        popularity: cast.popularity,
+        profile_path: cast.profile_path
+          ? `https://image.tmdb.org/t/p/w200${cast.profile_path}`
+          : "",
+        cast_id: cast.cast_id,
+        character: cast.character,
+        credit_id: cast.credit_id,
+        order: cast.order,
+      })),
     };
 
     return movieDetails;
