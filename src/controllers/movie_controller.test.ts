@@ -29,11 +29,11 @@ test("GET /movie with different param should return correct object", async () =>
   });
 });
 
-//Test /movieLover endpoint
-describe("Test movie API endpoint request", () => {
-  test("GET /movielover should return correct message", async () => {
-    const res = await request(app).get("/movielover");
+//Test /genres endpoint
+describe("Test /genres API endpoint request", () => {
+  test("GET /genres should return Action genre", async () => {
+    const res = await request(app).get("/genres");
     expect(res.statusCode).toEqual(200);
-    expect(res.text).toEqual("I looooooove movie!");
+    expect(res.text).toContain('Action');
   });
 });
