@@ -5,8 +5,7 @@ export interface MovieResponse {
   poster_path: string;
 }
 
-const API_URL =
-  `${process.env.BASE_URL}discover/movie?sort_by=popularity.desc&api_key=${process.env.API_KEY}&page=1`;
+const API_URL = `${process.env.BASE_URL}discover/movie?sort_by=popularity.desc&api_key=${process.env.API_KEY}&page=1`;
 
 export const options = {
   method: "GET",
@@ -114,4 +113,3 @@ export const getUpcomingMovies = async () => {
     return null;
   }
 };
-
