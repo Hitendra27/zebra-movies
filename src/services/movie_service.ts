@@ -98,6 +98,18 @@ export const getGenres = async () => {
   }
 };
 
+export const getHealth = async () => {
+  try {
+    const url = `https://api.themoviedb.org/3/`;
+    const response = await fetch(url, options);
+    const healthResults = await response.json();
+    return healthResults;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};
+
 export const getLatest = async () => {
   try {
     const url = `${process.env.BASE_URL}movie/now_playing?api_key=${process.env.API_KEY}&page=1`;
